@@ -81,8 +81,37 @@ if (message.content === '!spam') {
       }
 });
 
+client2.on('message', message => {
+var prefix = "-";
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
 
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
 
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "say2") {
+   message.channel.sendMessage(args.join("  "))
+   message.delete()
+  }
+ });
+
+client.on('message', message => {
+var prefix = "-";
+  if (message.author.bot) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "say") {
+   message.channel.sendMessage(args.join("  "))
+   message.delete()
+  }
+ });
 
 client.login(process.env.TOKEN);// لا تغير فيها شيء
 client2.login(process.env.TOKEN2);// لا تغير فيها شيء
